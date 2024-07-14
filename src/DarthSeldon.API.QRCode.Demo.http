@@ -1,0 +1,5 @@
+@Demo_HostAddress = https://localhost:7156
+
+GET {{Demo_HostAddress}}?content=https://darthseldon.net
+
+###
