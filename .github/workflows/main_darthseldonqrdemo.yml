@@ -33,7 +33,7 @@ jobs:
         run: dotnet build src/DarthSeldon.API.QRCode.Demo.sln --configuration Release      
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish src/DarthSeldon.API.QRCode.Demo.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
