@@ -82,5 +82,5 @@ jobs:
         run: npm install newman-reporter-junitfull -g
 
       - name: Run Newman
-        run: newman run "https://api.getpostman.com/collections/${{ vars.COLLECTIONID }}?apikey=${{ vars.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ vars.ENVIRONMENTID }}?apikey=${{ vars.POSTMANAPIKEY }}" --timeout-request 60000
+        run: newman run "https://api.getpostman.com/collections/${{ vars.COLLECTIONID }}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ vars.ENVIRONMENTID }}?apikey=${{ secrets.POSTMANAPIKEY }}" --timeout-request 60000
         
