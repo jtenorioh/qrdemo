@@ -72,7 +72,8 @@ jobs:
           package: .
           
   smoketest:
-    runs-on: ubuntu-latest      
+    runs-on: ubuntu-latest    
+    needs: deploy
     steps:
       - name: Install Newman        
         run: npm install newman -g
@@ -80,6 +81,6 @@ jobs:
       - name: Install Newman Reporter        
         run: npm install newman-reporter-junitfull -g
 
-    
+      - name: Run Newman
+        run: newman run "https://api.getpostman.com/collections/${{COLLECTIONID}}?apikey=${{POSTMANAPIKEY}}" --environment "https://api.getpostman.com/environments/${{ENVIRONMENTID}}?apikey=${{POSTMANAPIKEY}}" --timeout-request 60000
         
-          
