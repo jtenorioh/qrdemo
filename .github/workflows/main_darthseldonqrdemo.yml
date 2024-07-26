@@ -84,10 +84,7 @@ jobs:
       - name: runnewman
         continue-on-error: true
         run: newman run "https://api.getpostman.com/collections/${{ vars.COLLECTIONID }}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ vars.ENVIRONMENTID }}?apikey=${{ secrets.POSTMANAPIKEY }}" --timeout-request 60000
-
-      - if: steps.runnewman.exitcode > 0
+             
+      - if:  ${{ failure() }}
         run: curl -X POST -d 'Smoke test failed' -k https://darthseldon.net/ntfy/mytest 
-        
-      - if: steps.runnewman.exitcode == 0
-        run: curl -X POST -d 'Smoke test succeded' -k https://darthseldon.net/ntfy/mytest 
         
