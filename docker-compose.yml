@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  qrdemo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - AllowedOrigins__0=http://localhost
+    restart: unless-stopped
+    container_name: qrdemo-app
+
+  # Alternative: Separate services for development
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - AllowedOrigins__0=http://localhost:3000
+    volumes:
+      - ./src:/app/src
+    restart: unless-stopped
+    profiles:
+      - dev
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    restart: unless-stopped
+    profiles:
+      - dev
