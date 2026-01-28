@@ -1,4 +1,7 @@
-# Multi-stage Dockerfile for Backend
+# Multi-stage Dockerfile for Darth Seldon's QR Forge
+# Backend (.NET 8) + Frontend (React + Vite) + Nginx
+
+# Stage 1: Build Backend
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS backend-build
 WORKDIR /src
 
@@ -8,9 +11,9 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY src/ ./
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish -c Release -o /app/backend
 
-# Multi-stage Dockerfile for Frontend
+# Stage 2: Build Frontend
 FROM node:20-alpine AS frontend-build
 WORKDIR /app
 
@@ -22,24 +25,20 @@ RUN npm install
 COPY frontend/ ./
 RUN npm run build
 
-# Final stage - Runtime with Nginx
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS backend-runtime
-WORKDIR /app
-COPY --from=backend-build /app/publish .
-
-# Use Nginx for serving frontend and reverse proxy
-FROM nginx:alpine AS final
+# Stage 3: Final Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
-# Install .NET runtime for backend
-COPY --from=mcr.microsoft.com/dotnet/aspnet:8.0 /usr/share/dotnet /usr/share/dotnet
-RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+# Install Nginx
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy backend application
-COPY --from=backend-build /app/publish /app/backend
+# Copy backend from build stage
+COPY --from=backend-build /app/backend ./backend
 
-# Copy frontend build
-COPY --from=frontend-build /app/dist /usr/share/nginx/html
+# Copy frontend from build stage
+COPY --from=frontend-build /app/dist /var/www/html
 
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
@@ -48,6 +47,8 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/startup.sh /startup.sh
 RUN chmod +x /startup.sh
 
+# Expose port 80
 EXPOSE 80
 
+# Run startup script
 CMD ["/startup.sh"]
