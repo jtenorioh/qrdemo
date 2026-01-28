@@ -93,8 +93,9 @@ function App() {
     <div className="app">
       <div className="container">
         <header>
-          <h1>🔲 QR Code Generator</h1>
-          <p>Generate QR codes for URLs and WiFi credentials</p>
+          <h1>⚔️ Darth Seldon's QR Forge</h1>
+          <p className="motto">"You don't know the power of the dark side"</p>
+          <p>Command QR codes into existence for URLs and WiFi networks</p>
         </header>
 
         <div className="type-selector">
@@ -188,22 +189,22 @@ function App() {
           )}
 
           <button type="submit" className="generate-btn" disabled={loading}>
-            {loading ? '⏳ Generating...' : '✨ Generate QR Code'}
+            {loading ? '⚡ Forging...' : '🔥 Forge QR Code'}
           </button>
         </form>
 
         {qrImage && (
           <div className="qr-result">
-            <h3>Your QR Code</h3>
+            <h3>⚡ Your Power Manifest</h3>
             <div className="qr-image-container">
               <img src={qrImage} alt="Generated QR Code" />
             </div>
             <div className="qr-actions">
               <button onClick={downloadQR} className="download-btn">
-                💾 Download
+                📥 Claim Power
               </button>
               <button onClick={resetForm} className="reset-btn">
-                🔄 Generate Another
+                🔄 Forge Another
               </button>
             </div>
           </div>
