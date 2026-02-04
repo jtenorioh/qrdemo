@@ -1,0 +1,402 @@
+/**
+ * DARTH SELDON IMPERIAL DESIGN SYSTEM
+ * Animation Keyframes & Utilities
+ * Version: 1.0.0
+ * Last Updated: 2026-02-04
+ */
+
+/* ========================================
+   FADE ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+}
+
+.fade-out {
+  animation: fadeOut var(--duration-normal) var(--ease-in);
+}
+
+/* ========================================
+   SLIDE ANIMATIONS
+   ======================================== */
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp var(--duration-normal) var(--ease-imperial);
+}
+
+.slide-in-down {
+  animation: slideInDown var(--duration-normal) var(--ease-imperial);
+}
+
+.slide-in-left {
+  animation: slideInLeft var(--duration-normal) var(--ease-imperial);
+}
+
+.slide-in-right {
+  animation: slideInRight var(--duration-normal) var(--ease-imperial);
+}
+
+/* ========================================
+   GLOW PULSE ANIMATIONS
+   ======================================== */
+
+@keyframes glowPulseRed {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.9);
+  }
+}
+
+@keyframes glowPulseBlue {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.9);
+  }
+}
+
+@keyframes glowPulseGold {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.9);
+  }
+}
+
+.glow-pulse-red {
+  animation: glowPulseRed 2s var(--ease-in-out) infinite;
+}
+
+.glow-pulse-blue {
+  animation: glowPulseBlue 2s var(--ease-in-out) infinite;
+}
+
+.glow-pulse-gold {
+  animation: glowPulseGold 2s var(--ease-in-out) infinite;
+}
+
+/* ========================================
+   SHIMMER EFFECT
+   ======================================== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ========================================
+   HOLOGRAM FLICKER
+   ======================================== */
+
+@keyframes hologramFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.95;
+  }
+}
+
+.hologram {
+  animation: hologramFlicker 3s ease-in-out infinite;
+  color: var(--imperial-blue);
+  text-shadow: 0 0 10px var(--imperial-blue-glow);
+}
+
+/* ========================================
+   SPIN/ROTATE ANIMATIONS
+   ======================================== */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+.spin-reverse {
+  animation: spinReverse 1s linear infinite;
+}
+
+/* ========================================
+   SCALE ANIMATIONS
+   ======================================== */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-imperial);
+}
+
+.scale-out {
+  animation: scaleOut var(--duration-normal) var(--ease-imperial);
+}
+
+/* ========================================
+   HOVER TRANSITIONS
+   ======================================== */
+
+.scale-hover {
+  transition: transform var(--duration-normal) var(--ease-imperial);
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+.scale-hover-lg {
+  transition: transform var(--duration-normal) var(--ease-imperial);
+}
+
+.scale-hover-lg:hover {
+  transform: scale(1.1);
+}
+
+.lift-hover {
+  transition: transform var(--duration-normal) var(--ease-imperial),
+              box-shadow var(--duration-normal) var(--ease-imperial);
+}
+
+.lift-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ========================================
+   STAGGER ANIMATIONS (for lists)
+   ======================================== */
+
+.stagger-item:nth-child(1) { animation-delay: 0ms; }
+.stagger-item:nth-child(2) { animation-delay: 100ms; }
+.stagger-item:nth-child(3) { animation-delay: 200ms; }
+.stagger-item:nth-child(4) { animation-delay: 300ms; }
+.stagger-item:nth-child(5) { animation-delay: 400ms; }
+.stagger-item:nth-child(6) { animation-delay: 500ms; }
+.stagger-item:nth-child(7) { animation-delay: 600ms; }
+.stagger-item:nth-child(8) { animation-delay: 700ms; }
+.stagger-item:nth-child(9) { animation-delay: 800ms; }
+.stagger-item:nth-child(10) { animation-delay: 900ms; }
+
+/* ========================================
+   BOUNCE ANIMATIONS
+   ======================================== */
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* ========================================
+   SHAKE ANIMATION (for errors)
+   ======================================== */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ========================================
+   PING ANIMATION (for notifications)
+   ======================================== */
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ========================================
+   SKELETON LOADING
+   ======================================== */
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--imperial-gray-800) 0%,
+    var(--imperial-gray-700) 50%,
+    var(--imperial-gray-800) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.transition-all {
+  transition: all var(--duration-normal) var(--ease-in-out);
+}
+
+.transition-colors {
+  transition: color var(--duration-normal) var(--ease-in-out),
+              background-color var(--duration-normal) var(--ease-in-out),
+              border-color var(--duration-normal) var(--ease-in-out);
+}
+
+.transition-transform {
+  transition: transform var(--duration-normal) var(--ease-imperial);
+}
+
+.transition-opacity {
+  transition: opacity var(--duration-normal) var(--ease-in-out);
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }
