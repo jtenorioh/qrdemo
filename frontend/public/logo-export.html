@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darth Seldon Logo Export</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #111;
+      color: #ccc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ff1a1a;
+      margin-bottom: 20px;
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    label {
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    select, button {
+      padding: 8px 16px;
+      background: #222;
+      border: 1px solid #ff1a1a44;
+      color: #ccc;
+      font-size: 0.85rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+    button:hover {
+      background: #ff1a1a;
+      color: #fff;
+    }
+    #render-canvas {
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Darth Seldon Logo Export</h1>
+  <div class="controls">
+    <label>Resolution:
+      <select id="resolution">
+        <option value="512">512 x 512</option>
+        <option value="1024" selected>1024 x 1024</option>
+        <option value="2048">2048 x 2048</option>
+      </select>
+    </label>
+    <button id="download-btn">Download PNG</button>
+  </div>
+  <canvas id="render-canvas"></canvas>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('render-canvas');
+    const resSelect = document.getElementById('resolution');
+    const dlBtn = document.getElementById('download-btn');
+
+    function svgPt(x, y) {
+      const S = 0.1, OX = -50, OY = -60;
+      return new THREE.Vector2((x + OX) * S, -(y + OY) * S);
+    }
+
+    function createLogo() {
+      const group = new THREE.Group();
+
+      const chromeMat = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.25, metalness: 0.85 });
+      const frameMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, roughness: 0.3, metalness: 0.8 });
+      const redEmissive = new THREE.MeshStandardMaterial({
+        color: 0xff1a1a, roughness: 0.2, metalness: 0.3,
+        emissive: 0xff1a1a, emissiveIntensity: 1.5,
+        transparent: true, opacity: 0.9,
+      });
+      const redTipMat = new THREE.MeshStandardMaterial({
+        color: 0xff1a1a, roughness: 0.1, metalness: 0.2,
+        emissive: 0xff1a1a, emissiveIntensity: 2.0,
+      });
+
+      const extrudeSettings = { depth: 1.2, bevelEnabled: true, bevelThickness: 0.15, bevelSize: 0.1, bevelSegments: 3 };
+      const letterExtrude = { depth: 1.6, bevelEnabled: true, bevelThickness: 0.1, bevelSize: 0.08, bevelSegments: 2 };
+
+      // Outer frame
+      const frameShape = new THREE.Shape();
+      frameShape.moveTo(...svgPt(50, 2).toArray());
+      frameShape.lineTo(...svgPt(88, 22).toArray());
+      frameShape.lineTo(...svgPt(88, 98).toArray());
+      frameShape.lineTo(...svgPt(50, 118).toArray());
+      frameShape.lineTo(...svgPt(12, 98).toArray());
+      frameShape.lineTo(...svgPt(12, 22).toArray());
+      frameShape.closePath();
+
+      const innerHole = new THREE.Path();
+      innerHole.moveTo(...svgPt(50, 10).toArray());
+      innerHole.lineTo(...svgPt(82, 27).toArray());
+      innerHole.lineTo(...svgPt(82, 93).toArray());
+      innerHole.lineTo(...svgPt(50, 110).toArray());
+      innerHole.lineTo(...svgPt(18, 93).toArray());
+      innerHole.lineTo(...svgPt(18, 27).toArray());
+      innerHole.closePath();
+      frameShape.holes.push(innerHole);
+
+      const frameMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(frameShape, extrudeSettings), frameMat);
+      frameMesh.position.z = -extrudeSettings.depth / 2;
+      group.add(frameMesh);
+
+      // Back plate
+      const backShape = new THREE.Shape();
+      backShape.moveTo(...svgPt(50, 10).toArray());
+      backShape.lineTo(...svgPt(82, 27).toArray());
+      backShape.lineTo(...svgPt(82, 93).toArray());
+      backShape.lineTo(...svgPt(50, 110).toArray());
+      backShape.lineTo(...svgPt(18, 93).toArray());
+      backShape.lineTo(...svgPt(18, 27).toArray());
+      backShape.closePath();
+      const backMesh = new THREE.Mesh(
+        new THREE.ExtrudeGeometry(backShape, { depth: 0.3, bevelEnabled: false }),
+        new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.4, metalness: 0.7 })
+      );
+      backMesh.position.z = -0.15;
+      group.add(backMesh);
+
+      // D letter
+      const dShape = new THREE.Shape();
+      dShape.moveTo(...svgPt(28, 32).toArray());
+      dShape.lineTo(...svgPt(28, 88).toArray());
+      dShape.lineTo(...svgPt(48, 88).toArray());
+      dShape.lineTo(...svgPt(48, 82).toArray());
+      dShape.lineTo(...svgPt(52, 76).toArray());
+      dShape.lineTo(...svgPt(52, 44).toArray());
+      dShape.lineTo(...svgPt(48, 38).toArray());
+      dShape.lineTo(...svgPt(48, 32).toArray());
+      dShape.closePath();
+
+      const dHole = new THREE.Path();
+      dHole.moveTo(...svgPt(36, 42).toArray());
+      dHole.lineTo(...svgPt(44, 42).toArray());
+      dHole.lineTo(...svgPt(46, 46).toArray());
+      dHole.lineTo(...svgPt(46, 74).toArray());
+      dHole.lineTo(...svgPt(44, 78).toArray());
+      dHole.lineTo(...svgPt(36, 78).toArray());
+      dHole.closePath();
+      dShape.holes.push(dHole);
+
+      const dMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(dShape, letterExtrude), chromeMat);
+      dMesh.position.z = -letterExtrude.depth / 2;
+      group.add(dMesh);
+
+      // S letter
+      const sShape = new THREE.Shape();
+      sShape.moveTo(...svgPt(54, 32).toArray());
+      sShape.lineTo(...svgPt(74, 32).toArray());
+      sShape.lineTo(...svgPt(74, 40).toArray());
+      sShape.lineTo(...svgPt(62, 40).toArray());
+      sShape.lineTo(...svgPt(58, 46).toArray());
+      sShape.lineTo(...svgPt(58, 54).toArray());
+      sShape.lineTo(...svgPt(74, 54).toArray());
+      sShape.lineTo(...svgPt(74, 88).toArray());
+      sShape.lineTo(...svgPt(54, 88).toArray());
+      sShape.lineTo(...svgPt(54, 80).toArray());
+      sShape.lineTo(...svgPt(66, 80).toArray());
+      sShape.lineTo(...svgPt(70, 74).toArray());
+      sShape.lineTo(...svgPt(70, 66).toArray());
+      sShape.lineTo(...svgPt(54, 66).toArray());
+      sShape.closePath();
+
+      const sMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(sShape, letterExtrude), chromeMat);
+      sMesh.position.z = -letterExtrude.depth / 2;
+      group.add(sMesh);
+
+      // Center line
+      const lineMesh = new THREE.Mesh(new THREE.BoxGeometry(0.18, 8.4, 0.5), redEmissive);
+      lineMesh.position.set(0, 0, 0.5);
+      group.add(lineMesh);
+
+      // Tip accents
+      const tipGeo = new THREE.SphereGeometry(0.3, 12, 12);
+      const topTip = new THREE.Mesh(tipGeo, redTipMat);
+      topTip.position.set(...svgPt(50, 2).toArray(), 0.6);
+      group.add(topTip);
+
+      const bottomTip = new THREE.Mesh(tipGeo.clone(), redTipMat);
+      bottomTip.position.set(...svgPt(50, 118).toArray(), 0.6);
+      group.add(bottomTip);
+
+      // Notches
+      const notchShape = new THREE.Shape();
+      notchShape.moveTo(...svgPt(12, 45).toArray());
+      notchShape.lineTo(...svgPt(6, 50).toArray());
+      notchShape.lineTo(...svgPt(6, 70).toArray());
+      notchShape.lineTo(...svgPt(12, 75).toArray());
+      notchShape.lineTo(...svgPt(10, 70).toArray());
+      notchShape.lineTo(...svgPt(10, 50).toArray());
+      notchShape.closePath();
+      const leftNotch = new THREE.Mesh(new THREE.ExtrudeGeometry(notchShape, { depth: 0.8, bevelEnabled: false }), frameMat);
+      leftNotch.position.z = -0.4;
+      group.add(leftNotch);
+
+      const rNotchShape = new THREE.Shape();
+      rNotchShape.moveTo(...svgPt(88, 45).toArray());
+      rNotchShape.lineTo(...svgPt(94, 50).toArray());
+      rNotchShape.lineTo(...svgPt(94, 70).toArray());
+      rNotchShape.lineTo(...svgPt(88, 75).toArray());
+      rNotchShape.lineTo(...svgPt(90, 70).toArray());
+      rNotchShape.lineTo(...svgPt(90, 50).toArray());
+      rNotchShape.closePath();
+      const rightNotch = new THREE.Mesh(new THREE.ExtrudeGeometry(rNotchShape, { depth: 0.8, bevelEnabled: false }), frameMat);
+      rightNotch.position.z = -0.4;
+      group.add(rightNotch);
+
+      // Glow lights
+      group.add(Object.assign(new THREE.PointLight(0xff1a1a, 2, 12), { position: new THREE.Vector3(0, 5.8, 2) }));
+      group.add(Object.assign(new THREE.PointLight(0xff1a1a, 2, 12), { position: new THREE.Vector3(0, -5.8, 2) }));
+      group.add(Object.assign(new THREE.PointLight(0xff1a1a, 1.5, 8), { position: new THREE.Vector3(0, 0, 3) }));
+
+      return group;
+    }
+
+    function renderLogo(size) {
+      canvas.width = size;
+      canvas.height = size;
+      canvas.style.width = Math.min(size, 512) + 'px';
+      canvas.style.height = Math.min(size, 512) + 'px';
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+      renderer.setSize(size, size);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.4;
+      renderer.setClearColor(0x000000, 0);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+      camera.position.set(0, 0, 22);
+      camera.lookAt(0, 0, 0);
+
+      scene.add(new THREE.AmbientLight(0x666688, 1.2));
+      const key = new THREE.DirectionalLight(0xffffff, 1.5);
+      key.position.set(10, 10, 20);
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xccccee, 0.7);
+      fill.position.set(-10, 5, 15);
+      scene.add(fill);
+      const top = new THREE.DirectionalLight(0xeeeeff, 0.5);
+      top.position.set(0, 15, 10);
+      scene.add(top);
+
+      const logo = createLogo();
+      scene.add(logo);
+
+      renderer.render(scene, camera);
+      renderer.dispose();
+    }
+
+    function download() {
+      const dataUrl = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = `darth-seldon-logo-${resSelect.value}x${resSelect.value}.png`;
+      a.click();
+    }
+
+    resSelect.addEventListener('change', () => renderLogo(parseInt(resSelect.value)));
+    dlBtn.addEventListener('click', download);
+
+    // Initial render
+    renderLogo(parseInt(resSelect.value));
+  </script>
+</body>
+</html>

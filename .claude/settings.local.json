@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker build:*)",
+      "Bash(git checkout:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker run:*)",
+      "Bash(docker compose:*)",
+      "Bash(ping:*)",
+      "Bash(docker images:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nFix Docker startup crash and mask WiFi password field\n\n- Fix CRLF line endings in startup.sh causing \"no such file or directory\"\n  by stripping carriage returns in the Dockerfile at build time\n- Add .gitattributes to enforce LF line endings for shell scripts\n- Change WiFi password input type from text to password for masking\n- Add Docker Hub documentation \\(DOCKERHUB.md\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "WebSearch"
+    ]
+  }
+}
