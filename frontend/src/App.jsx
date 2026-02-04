@@ -143,7 +143,7 @@ function App() {
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   id="password"
                   placeholder="Enter WiFi password"
                   value={password}

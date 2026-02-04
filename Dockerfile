@@ -43,9 +43,9 @@ COPY --from=frontend-build /app/dist /var/www/html
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-# Copy startup script
+# Copy startup script and fix line endings (Windows CRLF -> Unix LF)
 COPY docker/startup.sh /startup.sh
-RUN chmod +x /startup.sh
+RUN sed -i 's/\r$//' /startup.sh && chmod +x /startup.sh
 
 # Expose port 80
 EXPOSE 80
