@@ -93,7 +93,7 @@ function App() {
     <div className="app">
       <div className="container">
         <header>
-          <h1>🔲 QR Code Generator</h1>
+          <h1>⚡ QR Code Generator</h1>
           <p>Generate QR codes for URLs and WiFi credentials</p>
         </header>
 
@@ -112,85 +112,89 @@ function App() {
           </button>
         </div>
 
-        <form onSubmit={generateQR}>
-          {qrType === 'url' ? (
-            <div className="form-group">
-              <label htmlFor="url">Enter URL</label>
-              <input
-                type="text"
-                id="url"
-                placeholder="https://example.com"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                disabled={loading}
-              />
-            </div>
-          ) : (
-            <>
+        <div className="form-card">
+          <form onSubmit={generateQR}>
+            {qrType === 'url' ? (
               <div className="form-group">
-                <label htmlFor="ssid">WiFi Network Name (SSID)</label>
+                <label htmlFor="url">Enter URL</label>
                 <input
                   type="text"
-                  id="ssid"
-                  placeholder="MyWiFiNetwork"
-                  value={ssid}
-                  onChange={(e) => setSsid(e.target.value)}
+                  id="url"
+                  placeholder="https://example.com"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
                   disabled={loading}
                 />
               </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="text"
-                  id="password"
-                  placeholder="Enter WiFi password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  disabled={loading}
-                />
-              </div>
-
-              <div className="form-row">
+            ) : (
+              <>
                 <div className="form-group">
-                  <label htmlFor="encryption">Encryption Type</label>
-                  <select
-                    id="encryption"
-                    value={encryptionType}
-                    onChange={(e) => setEncryptionType(e.target.value)}
+                  <label htmlFor="ssid">WiFi Network Name (SSID)</label>
+                  <input
+                    type="text"
+                    id="ssid"
+                    placeholder="MyWiFiNetwork"
+                    value={ssid}
+                    onChange={(e) => setSsid(e.target.value)}
                     disabled={loading}
-                  >
-                    <option value="WPA">WPA/WPA2</option>
-                    <option value="WEP">WEP</option>
-                    <option value="nopass">None</option>
-                  </select>
+                  />
                 </div>
 
-                <div className="form-group checkbox-group">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={hidden}
-                      onChange={(e) => setHidden(e.target.checked)}
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="text"
+                    id="password"
+                    placeholder="Enter WiFi password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={loading}
+                  />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="encryption">Encryption Type</label>
+                    <select
+                      id="encryption"
+                      value={encryptionType}
+                      onChange={(e) => setEncryptionType(e.target.value)}
                       disabled={loading}
-                    />
-                    <span>Hidden Network</span>
-                  </label>
+                    >
+                      <option value="WPA">WPA/WPA2</option>
+                      <option value="WEP">WEP</option>
+                      <option value="nopass">None</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group checkbox-group">
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={hidden}
+                        onChange={(e) => setHidden(e.target.checked)}
+                        disabled={loading}
+                      />
+                      <span>Hidden Network</span>
+                    </label>
+                  </div>
                 </div>
+              </>
+            )}
+
+            {error && (
+              <div className="error-message">
+                <span>⚠️</span>
+                <span>{error}</span>
               </div>
-            </>
-          )}
+            )}
 
-          {error && (
-            <div className="error-message">
-              ⚠️ {error}
-            </div>
-          )}
-
-          <button type="submit" className="generate-btn" disabled={loading}>
-            {loading ? '⏳ Generating...' : '✨ Generate QR Code'}
-          </button>
-        </form>
+            <button type="submit" className="generate-btn" disabled={loading}>
+              {loading && <span className="spinner-inline"></span>}
+              <span>{loading ? 'Generating...' : '✨ Generate QR Code'}</span>
+            </button>
+          </form>
+        </div>
 
         {qrImage && (
           <div className="qr-result">
@@ -200,10 +204,12 @@ function App() {
             </div>
             <div className="qr-actions">
               <button onClick={downloadQR} className="download-btn">
-                💾 Download
+                <span>💾</span>
+                <span>Download</span>
               </button>
               <button onClick={resetForm} className="reset-btn">
-                🔄 Generate Another
+                <span>🔄</span>
+                <span>Generate Another</span>
               </button>
             </div>
           </div>

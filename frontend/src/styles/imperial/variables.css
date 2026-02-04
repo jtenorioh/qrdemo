@@ -1,0 +1,227 @@
+/**
+ * DARTH SELDON IMPERIAL DESIGN SYSTEM
+ * CSS Variables - Colors, Typography, Spacing, Shadows
+ * Version: 1.0.0
+ * Last Updated: 2026-02-04
+ */
+
+:root {
+  /* ========================================
+     PRIMARY COLORS - Imperial Palette
+     ======================================== */
+  
+  --imperial-black: #0a0a0a;           /* Deep space black */
+  --imperial-gray-900: #1a1a1a;        /* Dark panel background */
+  --imperial-gray-800: #2a2a2a;        /* Card background */
+  --imperial-gray-700: #3a3a3a;        /* Border/divider */
+  --imperial-gray-600: #4a4a4a;        /* Subtle borders */
+  --imperial-gray-500: #6b7280;        /* Muted elements */
+  
+  --imperial-red: #dc2626;             /* Sith red (accents, danger) */
+  --imperial-red-dark: #991b1b;        /* Dark red */
+  --imperial-red-glow: #ef4444;        /* Red glow effects */
+  
+  --imperial-blue: #3b82f6;            /* Hologram blue */
+  --imperial-blue-dark: #1e40af;       /* Dark blue */
+  --imperial-blue-glow: #60a5fa;       /* Blue glow effects */
+  
+  /* ========================================
+     ACCENT COLORS
+     ======================================== */
+  
+  --imperial-gold: #d4af37;            /* Imperial insignia gold */
+  --imperial-silver: #c0c0c0;          /* Metallic silver */
+  --imperial-green: #10b981;           /* Success state */
+  --imperial-amber: #f59e0b;           /* Warning state */
+  --imperial-purple: #8b5cf6;          /* Info/special state */
+  
+  /* ========================================
+     TEXT COLORS
+     ======================================== */
+  
+  --text-primary: #e5e7eb;             /* Main text (off-white) */
+  --text-secondary: #9ca3af;           /* Secondary text (gray) */
+  --text-muted: #6b7280;               /* Muted text */
+  --text-accent: #3b82f6;              /* Links, interactive */
+  --text-inverse: #0a0a0a;             /* Dark text on light bg */
+  
+  /* ========================================
+     GRADIENTS
+     ======================================== */
+  
+  --gradient-imperial: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  --gradient-sith: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%);
+  --gradient-hologram: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #b8960d 100%);
+  --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%);
+  
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  
+  /* Font Families */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  --font-display: 'Orbitron', 'Arial Black', sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+  
+  --space-0: 0;
+  --space-1: 0.25rem;      /* 4px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-4: 1rem;         /* 16px */
+  --space-5: 1.25rem;      /* 20px */
+  --space-6: 1.5rem;       /* 24px */
+  --space-8: 2rem;         /* 32px */
+  --space-10: 2.5rem;      /* 40px */
+  --space-12: 3rem;        /* 48px */
+  --space-16: 4rem;        /* 64px */
+  --space-20: 5rem;        /* 80px */
+  --space-24: 6rem;        /* 96px */
+  
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.25rem;    /* 4px - small elements */
+  --radius-md: 0.5rem;     /* 8px - cards, buttons */
+  --radius-lg: 0.75rem;    /* 12px - modals */
+  --radius-xl: 1rem;       /* 16px - hero sections */
+  --radius-2xl: 1.5rem;    /* 24px - large cards */
+  --radius-full: 9999px;   /* Circular elements */
+  
+  /* ========================================
+     SHADOWS & GLOWS
+     ======================================== */
+  
+  /* Standard Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  
+  /* Glow Effects */
+  --shadow-glow-red: 0 0 20px rgba(220, 38, 38, 0.6);
+  --shadow-glow-red-lg: 0 0 40px rgba(220, 38, 38, 0.8);
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.6);
+  --shadow-glow-blue-lg: 0 0 40px rgba(59, 130, 246, 0.8);
+  --shadow-glow-gold: 0 0 20px rgba(212, 175, 55, 0.6);
+  --shadow-glow-gold-lg: 0 0 40px rgba(212, 175, 55, 0.8);
+  --shadow-glow-green: 0 0 20px rgba(16, 185, 129, 0.6);
+  --shadow-glow-purple: 0 0 20px rgba(139, 92, 246, 0.6);
+  
+  /* ========================================
+     ANIMATION TIMING
+     ======================================== */
+  
+  /* Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-imperial: cubic-bezier(0.16, 1, 0.3, 1);  /* Custom smooth easing */
+  
+  /* Duration */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  --duration-slowest: 1000ms;
+  
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+  
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-fixed: 1200;
+  --z-modal-backdrop: 1300;
+  --z-modal: 1400;
+  --z-popover: 1500;
+  --z-tooltip: 1600;
+  
+  /* ========================================
+     BREAKPOINTS (for reference in JS)
+     ======================================== */
+  
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ========================================
+   DARK MODE (default)
+   ======================================== */
+
+body {
+  background-color: var(--imperial-black);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+/* ========================================
+   REDUCED MOTION SUPPORT
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   SELECTION STYLING
+   ======================================== */
+
+::selection {
+  background-color: var(--imperial-red);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background-color: var(--imperial-red);
+  color: var(--text-primary);
+}
