@@ -4,6 +4,19 @@
   width: 100%;
 }
 
+/* ── 3D LOGO ── */
+.logo-3d-container {
+  width: 280px;
+  height: 280px;
+  margin: -10px auto 10px;
+  animation: fadeScaleIn 0.8s ease 2.8s both;
+}
+.logo-3d-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* ── LOADING SCREEN ── */
 .loader-overlay {
   position: fixed;
@@ -133,10 +146,13 @@ header p {
 
 /* ── IMPERIAL CREST ── */
 .imperial-crest {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.5)) drop-shadow(0 0 50px rgba(220, 38, 38, 0.2));
+  animation: fadeScaleIn 0.8s ease 3s both;
 }
 
 /* ── TYPE SELECTOR ── */

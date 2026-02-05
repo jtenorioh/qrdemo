@@ -30,9 +30,9 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 #bg-canvas {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 import SpaceBackground from './SpaceBackground'
+import Logo3D from './Logo3D'
 
 function App() {
   const [qrType, setQrType] = useState('url')
@@ -125,53 +126,17 @@ function App() {
       <SpaceBackground />
 
       <div className="app">
+        {/* 3D Rotating Logo */}
+        <Logo3D />
+
         <div className="container">
           <header>
-            {/* Darth Seldon DS Monogram Crest */}
-            <svg className="imperial-crest" viewBox="0 0 100 120" fill="none">
-              <defs>
-                <linearGradient id="frameFill" x1="0" y1="0" x2="100" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#4a4a4a"/>
-                  <stop offset="50%" stopColor="#2a2a2a"/>
-                  <stop offset="100%" stopColor="#3a3a3a"/>
-                </linearGradient>
-                <linearGradient id="letterFill" x1="0" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#5a5a5a"/>
-                  <stop offset="50%" stopColor="#3a3a3a"/>
-                  <stop offset="100%" stopColor="#4a4a4a"/>
-                </linearGradient>
-                <filter id="redGlow">
-                  <feGaussianBlur stdDeviation="3" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-              {/* Outer angular hexagonal frame — Sith holocron shape */}
-              <path d="M50 2 L88 22 L88 98 L50 118 L12 98 L12 22 Z"
-                    fill="url(#frameFill)" stroke="#555" strokeWidth="1.5"/>
-              {/* Notched sides */}
-              <path d="M12 45 L6 50 L6 70 L12 75" fill="none" stroke="#555" strokeWidth="1"/>
-              <path d="M88 45 L94 50 L94 70 L88 75" fill="none" stroke="#555" strokeWidth="1"/>
-              {/* Inner frame border */}
-              <path d="M50 10 L82 27 L82 93 L50 110 L18 93 L18 27 Z"
-                    fill="none" stroke="#444" strokeWidth="0.6"/>
-              {/* "D" letter — left half, bold angular strokes */}
-              <path d="M28 32 L28 88 L48 88 L48 82 L52 76 L52 44 L48 38 L48 32 Z
-                       M36 42 L44 42 L46 46 L46 74 L44 78 L36 78 Z"
-                    fill="url(#letterFill)" fillRule="evenodd" stroke="#555" strokeWidth="0.5"/>
-              {/* "S" letter — right half, angular zigzag */}
-              <path d="M54 32 L74 32 L74 40 L62 40 L58 46 L58 54 L74 54 L74 88 L54 88 L54 80 L66 80 L70 74 L70 66 L54 66 Z"
-                    fill="url(#letterFill)" stroke="#555" strokeWidth="0.5"/>
-              {/* Red lightsaber center line */}
-              <line x1="50" y1="18" x2="50" y2="102" stroke="#ff1a1a" strokeWidth="2"
-                    opacity="0.9" filter="url(#redGlow)"/>
-              {/* Red glow accent — top point */}
-              <circle cx="50" cy="5" r="3" fill="#ff1a1a" opacity="0.7" filter="url(#redGlow)"/>
-              {/* Red glow accent — bottom point */}
-              <circle cx="50" cy="115" r="3" fill="#ff1a1a" opacity="0.7" filter="url(#redGlow)"/>
-            </svg>
+            {/* Darth Seldon Logo */}
+            <img
+              className="imperial-crest"
+              src="/assets/darth-seldon-logo-no-slogan.svg"
+              alt="Darth Seldon"
+            />
 
             <h1>Darth <span className="accent">Seldon's</span> QR Forge</h1>
             <div className="saber-divider"></div>

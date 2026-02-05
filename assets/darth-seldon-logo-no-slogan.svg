@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="800" fill="#0a0a0a"/>
+  
+  <!-- Darth Seldon Logo - NO SLOGAN VERSION -->
+  
+  <!-- Outer circle rings (multiple layers for depth) -->
+  <circle cx="400" cy="400" r="230" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.3"/>
+  <circle cx="400" cy="400" r="220" fill="none" stroke="#3a3a3a" stroke-width="2"/>
+  <circle cx="400" cy="400" r="200" fill="#0f0f0f" stroke="#dc2626" stroke-width="3" opacity="0.9"/>
+  
+  <!-- Circuit board pattern background (subtle grid) -->
+  <defs>
+    <pattern id="circuitGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 0 0 L 0 20 M 0 0 L 20 0" stroke="#1a1a1a" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <circle cx="400" cy="400" r="195" fill="url(#circuitGrid)"/>
+  
+  <!-- CPU Circuit Sith Symbol -->
+  <g id="cpu-circuit-symbol" stroke-linecap="square">
+    
+    <!-- Central processor core -->
+    <rect x="350" y="350" width="100" height="100" fill="#1a1a1a" stroke="#dc2626" stroke-width="4"/>
+    <rect x="360" y="360" width="80" height="80" fill="none" stroke="#dc2626" stroke-width="3" opacity="0.7"/>
+    <rect x="370" y="370" width="60" height="60" fill="none" stroke="#dc2626" stroke-width="2" opacity="0.5"/>
+    <rect x="380" y="380" width="40" height="40" fill="#dc2626" opacity="0.4"/>
+    
+    <!-- CPU pin grid -->
+    <g id="cpu-pins" fill="#dc2626" opacity="0.3">
+      <circle cx="375" cy="375" r="2"/>
+      <circle cx="390" cy="375" r="2"/>
+      <circle cx="405" cy="375" r="2"/>
+      <circle cx="420" cy="375" r="2"/>
+      <circle cx="375" cy="390" r="2"/>
+      <circle cx="390" cy="390" r="2"/>
+      <circle cx="405" cy="390" r="2"/>
+      <circle cx="420" cy="390" r="2"/>
+      <circle cx="375" cy="405" r="2"/>
+      <circle cx="390" cy="405" r="2"/>
+      <circle cx="405" cy="405" r="2"/>
+      <circle cx="420" cy="405" r="2"/>
+      <circle cx="375" cy="420" r="2"/>
+      <circle cx="390" cy="420" r="2"/>
+      <circle cx="405" cy="420" r="2"/>
+      <circle cx="420" cy="420" r="2"/>
+    </g>
+    
+    <!-- NORTH circuit path -->
+    <g id="north-circuit">
+      <path d="M 400 350 L 400 300 L 420 300 L 420 280" stroke="#dc2626" stroke-width="3" fill="none"/>
+      <path d="M 400 330 L 380 330 L 380 290 L 360 290 L 360 280" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <path d="M 400 330 L 420 330 L 420 310" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <rect x="416" y="276" width="8" height="8" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
+      <rect x="356" y="276" width="8" height="8" fill="#6b7280" stroke="#6b7280" stroke-width="1"/>
+      <circle cx="420" cy="310" r="4" fill="#6b7280"/>
+    </g>
+    
+    <!-- SOUTH circuit path -->
+    <g id="south-circuit">
+      <path d="M 400 450 L 400 500 L 380 500 L 380 520" stroke="#dc2626" stroke-width="3" fill="none"/>
+      <path d="M 400 470 L 420 470 L 420 510 L 440 510 L 440 520" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <path d="M 400 470 L 380 470 L 380 490" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <rect x="376" y="516" width="8" height="8" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
+      <rect x="436" y="516" width="8" height="8" fill="#6b7280" stroke="#6b7280" stroke-width="1"/>
+      <circle cx="380" cy="490" r="4" fill="#6b7280"/>
+    </g>
+    
+    <!-- WEST circuit path -->
+    <g id="west-circuit">
+      <path d="M 350 400 L 300 400 L 300 380 L 280 380" stroke="#dc2626" stroke-width="3" fill="none"/>
+      <path d="M 330 400 L 330 420 L 310 420 L 310 440 L 290 440" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <path d="M 330 400 L 330 380 L 310 380" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <rect x="276" y="376" width="8" height="8" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
+      <rect x="286" y="436" width="8" height="8" fill="#6b7280" stroke="#6b7280" stroke-width="1"/>
+      <circle cx="310" cy="380" r="4" fill="#6b7280"/>
+    </g>
+    
+    <!-- EAST circuit path -->
+    <g id="east-circuit">
+      <path d="M 450 400 L 500 400 L 500 420 L 520 420" stroke="#dc2626" stroke-width="3" fill="none"/>
+      <path d="M 470 400 L 470 380 L 490 380 L 490 360 L 510 360" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <path d="M 470 400 L 470 420 L 490 420" stroke="#6b7280" stroke-width="2" fill="none"/>
+      <rect x="516" y="416" width="8" height="8" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
+      <rect x="506" y="356" width="8" height="8" fill="#6b7280" stroke="#6b7280" stroke-width="1"/>
+      <circle cx="490" cy="420" r="4" fill="#6b7280"/>
+    </g>
+    
+    <!-- NE quadrant traces -->
+    <path d="M 450 350 L 480 350 L 480 320 L 500 320" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 450 370 L 470 370 L 470 340 L 490 340 L 490 310" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="500" cy="320" r="5" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="490" cy="310" r="4" fill="#3b82f6" opacity="0.6"/>
+    
+    <!-- NW quadrant traces -->
+    <path d="M 350 350 L 320 350 L 320 320 L 300 320" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 350 370 L 330 370 L 330 340 L 310 340 L 310 310" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="300" cy="320" r="5" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="310" cy="310" r="4" fill="#3b82f6" opacity="0.6"/>
+    
+    <!-- SE quadrant traces -->
+    <path d="M 450 450 L 480 450 L 480 480 L 500 480" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 450 430 L 470 430 L 470 460 L 490 460 L 490 490" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="500" cy="480" r="5" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="490" cy="490" r="4" fill="#3b82f6" opacity="0.6"/>
+    
+    <!-- SW quadrant traces -->
+    <path d="M 350 450 L 320 450 L 320 480 L 300 480" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity="0.8"/>
+    <path d="M 350 430 L 330 430 L 330 460 L 310 460 L 310 490" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+    <circle cx="300" cy="480" r="5" fill="#3b82f6" opacity="0.8"/>
+    <circle cx="310" cy="490" r="4" fill="#3b82f6" opacity="0.6"/>
+    
+    <!-- Fine traces -->
+    <path d="M 400 310 L 385 310 L 385 295" stroke="#6b7280" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 400 490 L 415 490 L 415 505" stroke="#6b7280" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 320 400 L 320 415 L 305 415" stroke="#6b7280" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M 480 400 L 480 385 L 495 385" stroke="#6b7280" stroke-width="1.5" fill="none" opacity="0.5"/>
+    
+    <!-- Via connections -->
+    <circle cx="380" cy="330" r="2.5" fill="#dc2626" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="420" cy="330" r="2.5" fill="#dc2626" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="380" cy="470" r="2.5" fill="#dc2626" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="420" cy="470" r="2.5" fill="#dc2626" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="330" cy="380" r="2.5" fill="#3b82f6" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="470" cy="380" r="2.5" fill="#3b82f6" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="330" cy="420" r="2.5" fill="#3b82f6" stroke="#1a1a1a" stroke-width="1"/>
+    <circle cx="470" cy="420" r="2.5" fill="#3b82f6" stroke="#1a1a1a" stroke-width="1"/>
+    
+    <!-- Outer connectors -->
+    <g id="outer-connectors" stroke="#3a3a3a" stroke-width="2" fill="#1a1a1a">
+      <rect x="396" y="235" width="8" height="15" rx="1"/>
+      <rect x="396" y="550" width="8" height="15" rx="1"/>
+      <rect x="225" y="396" width="15" height="8" rx="1"/>
+      <rect x="560" y="396" width="15" height="8" rx="1"/>
+      <rect x="265" y="255" width="12" height="12" rx="1"/>
+      <rect x="523" y="255" width="12" height="12" rx="1"/>
+      <rect x="265" y="533" width="12" height="12" rx="1"/>
+      <rect x="523" y="533" width="12" height="12" rx="1"/>
+    </g>
+    
+    <!-- Glow effects -->
+    <circle cx="400" cy="400" r="110" fill="none" stroke="#dc2626" stroke-width="1" opacity="0.1"/>
+    <circle cx="400" cy="400" r="85" fill="none" stroke="#dc2626" stroke-width="1" opacity="0.15"/>
+    <circle cx="400" cy="400" r="65" fill="none" stroke="#dc2626" stroke-width="1.5" opacity="0.2"/>
+  </g>
+  
+  <!-- Arc text - "DARTH SELDON" -->
+  <defs>
+    <path id="topArc" d="M 200 400 A 200 200 0 0 1 600 400" fill="none"/>
+  </defs>
+  <text font-family="Orbitron, sans-serif" font-size="32" font-weight="700" fill="#e5e7eb" letter-spacing="8">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      DARTH SELDON
+    </textPath>
+  </text>
+  
+  <!-- Bottom arc decoration -->
+  <path d="M 240 560 Q 400 580 560 560" fill="none" stroke="#3a3a3a" stroke-width="2"/>
+  <circle cx="400" cy="580" r="2" fill="#dc2626" opacity="0.6"/>
+</svg>
